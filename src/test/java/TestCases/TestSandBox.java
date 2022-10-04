@@ -16,7 +16,7 @@ public class TestSandBox {
 
     @Parameters({"browser"})
     @BeforeMethod
-    public void SetUp(@Optional("chrome") String browser){
+    public void SetUp(@Optional("edge") String browser){
 
         switch (browser) {
             case "chrome" -> {
@@ -28,7 +28,7 @@ public class TestSandBox {
             case "edge" -> {
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--headless", "--window-size=1920,1200", "--ignore-certificate-errors");
-                System.setProperty("webdriver.edge.driver", "C:/Users/Andy/Downloads/edgedriver_win32/msedgedriver.exe");
+                System.setProperty("webdriver.edge.driver", "C:/Users/erptest/Downloads/edgedriver_win32/msedgedriver.exe");
                 driver = new EdgeDriver(edgeOptions);
             }
         }
