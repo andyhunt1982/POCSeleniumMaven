@@ -1,6 +1,7 @@
 package TestCases;
 
 import PageObjectLibrary.GoogleSearchPage;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,19 +17,19 @@ public class TestSandBox {
 
     @Parameters({"browser"})
     @BeforeMethod
-    public void SetUp(@Optional("edge") String browser){
+    public void SetUp(@Optional("chrome") String browser){
 
         switch (browser) {
             case "chrome" -> {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--window-size=1920,1200", "--ignore-certificate-errors");
-                System.setProperty("webdriver.chrome.driver", "C:/Users/Andy/Downloads/chromedriver_win32/chromedriver.exe");
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(chromeOptions);
             }
             case "edge" -> {
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.addArguments("--headless", "--window-size=1920,1200", "--ignore-certificate-errors");
-                System.setProperty("webdriver.edge.driver", "C:/Users/erptest/Downloads/edgedriver_win32/msedgedriver.exe");
+                WebDriverManager.edgedriver().setup();
                 driver = new EdgeDriver(edgeOptions);
             }
         }
